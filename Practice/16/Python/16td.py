@@ -1,11 +1,19 @@
+#k = type(True)
+f = 0
+j = 0
+b = 'Ответ:'
+print("Введите количество банкнот ENTER!")
 n = int(input())
-mon = []
-for _ in range(n):
-    mon = input()
-    if mon.startswith('a') and mon.endswith('55661'):
-        mon.append(mon)
-
-if len(mon) == 0:
-    print(-1)
+print("Введите банкноты через ENTER!")
+while j < n:
+    
+    a = str(input())
+    if a[0] == 'a' and a[4] == '5' and a[5] == '5' and a[6] == '6' and a[7] == '6' and a[8] == '1':
+        b = b + ' ' + a
+    else:
+        f = f + 1
+    j = j + 1
+if f == n:
+    print("-1")
 else:
-    print(' '.join(mon))
+    print(b)

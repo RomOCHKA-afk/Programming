@@ -1,15 +1,29 @@
-  
-def k(a, b, c, n):
-	if sum(c) == n:
-		if not 0 in c:
-			print(b, end=' ')
-		return
-	for i in range(len(c)):
-		c[i] += 1
-		k(a, b+a[i], c, n)
-		c[i] -= 1
+import itertools as it
 
-n = int(input('Введите количество символов: '))
-s = input('Введите символы: ')
-c = len(s)*[0]
-k(s, '', c, n)
+anws = []
+n = int(input())
+slovo = input()
+slovo = list(slovo)
+
+if n > len(slovo):
+    perem = n - len(slovo)
+    b = list(it.permutations(slovo, perem))
+    
+    for i in b:
+        for j in i:
+            slovo.append(j)
+            
+        a = [el for el in it.permutations(slovo, n)]
+        
+        for i in range (len(a)):
+            anws.append(''.join(map(str, a[i])))
+            
+        del slovo[len(slovo)::]
+        
+    h = list(set(anws))
+    
+    for g in range(len(h)):
+        print(h[g], end=' ')
+else:
+    for i in list(it.permutations(slovo, n)):
+        print(''.join(map(str, i)), end = ' ')

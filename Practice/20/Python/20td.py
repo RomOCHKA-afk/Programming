@@ -1,35 +1,34 @@
-class Drink:
-    def __init__(self):
-            self.price  = 0.0
-            self.volume = 0.0
-            self.name   = ""
+b = 0
 
-balance = int(input("Введите баланс: "))
-drink_amount = int(input("Введите количество напитков: "))
+groshi, n = int(input()), int(input())
 
-best = Drink()
-inpt = Drink()
+napitki = [0] * n
+price = [0] * n
+v = [0] * n
+rez = [0] * n
+litr = [0] * n
 
-for i in range(drink_amount):
-	inpt.name   = input("Имя напитка: ")
-	inpt.price  = int(input("Цена напитка: "))
-	inpt.volume = int(input("Объём напитка: "))
+for i in range (n) :
+    napitki[i], price[i], v[i] = map(str, input().split(' '))
+    #napitki[i] = ''.join(napitki[i])
+    #price[i] = ''.join(price[i])
+    #v[i] = ''.join(v[i])
+    #print(napitki[i], price[i], v[i])
+    price[i] = int(price[i])
+    v[i] = int(v[i])
+    rez[i] = int(groshi / price[i])
+    litr[i] = rez[i] * v[i]
+    #print(rez[i], litr[i])
+    if litr[i] == 0 : b = b + 1
 
-	liters = (balance // inpt.price) * inpt.volume
-	if liters == 0:
-		continue
-	
-	if best.price == 0:
-		best = inpt
-		continue
-	
-	best_liters = (balance // best.price) * best.volume
-	if liters > best_liters:
-		best = inpt
+if b == n :
+    print(-1)
+    exit(0)
 
-if best.price == 0:
-	print(-1)
-else:
-    bottles = balance // best.price
-    print("{} {}\n{}\n{}".format(best.name, bottles, bottles * best.volume,
-        balance - best.price * bottles))
+for i in range (n) :
+    for j in range (n) :
+        if litr[i] > litr[j] : k = i
+
+print(napitki[k], rez[k])
+print(litr[k])
+print(groshi - (price[k] * rez[k]))

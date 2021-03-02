@@ -1,61 +1,37 @@
-MAX_SIZE = 36
-MIN_SIZE = 0
-SIZE = abs(MAX_SIZE)+abs(MIN_SIZE)+1
-MAX_PLAYS = 12 #K
-LAYOUT = 'Z101010101001010101101010101001010101'
-
-COLOUR_STACK = MAX_PLAYS*['-']
-
-class NumberElement:
-	counted: int = 0
-	lastCount: int = -1
-
-def calculate(a, id, playCounter):
-	a[id].counted += 1
-	a[id].lastCount = playCounter
-	COLOUR_STACK.pop(0)
-	COLOUR_STACK.append(LAYOUT[id])
-
-def printMostCommonNumbers(a):
-	max = -1
-	for id in range(MIN_SIZE, MAX_SIZE+1):
-		if a[id].counted > max:
-			max = a[id].counted
-	for id in range(MIN_SIZE, MAX_SIZE+1):
-		if a[id].counted == max:
-			print(id, ' ', sep='', end='')
-	print()
-
-def printMissingNumbers(a, playCounter):
-	K = min(MAX_PLAYS-1, playCounter)
-	for id in range(MIN_SIZE, MAX_SIZE+1):
-		if playCounter-a[id].lastCount > K:
-			print(id, ' ', sep='', end='')
-	print()
-
-def printColourStats(COLOUR_STACK):
-	RED = 0
-	BLACK = 0
-	for id in range(0, len(COLOUR_STACK)):
-		if COLOUR_STACK[id] == '0': BLACK += 1
-		if COLOUR_STACK[id] == '1': RED +=1
-	print(RED, BLACK) 
-		
-
-def printResult(a, playCounter):
-	printMostCommonNumbers(a)
-	printMissingNumbers(a, playCounter)
-	printColourStats(COLOUR_STACK)
-	print()
-
-a = []
-for i in range(0, SIZE):
-	a.append(NumberElement())
-playCounter = 0
-#Input
-id = int(input())
-while not (id == -1):
-	calculate(a, id, playCounter)
-	printResult(a, playCounter)
-	playCounter += 1
-	id = int(input())
+r = 37
+a = [0] * r
+i = 0
+t = 0
+q = 0
+w = 0
+p = 0
+red = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]
+for i in range (37):
+    a[i] = 0
+while 1:
+    u = 0
+    o = 0
+    l = 0
+    x = int(input())
+    if x < 0:
+        break
+    else:
+        a[x]=a[x] + 1
+        for t in range (18):
+            if x == red[t]:
+                q=q+1
+                break
+            elif t == 17:
+                w=w+1
+                break
+    for u in range (37):
+        if a[u] > p:
+            p = a[u]
+    for o in range (37):
+        if a[o] == p:
+            print (o,end = " ")
+    print("\n")        
+    for l in range (37):
+        if a[l] == 0:
+            print (l,end = " ")
+    print("\n","Красные: ",q," Черные: ",w,"\n")

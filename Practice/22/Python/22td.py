@@ -25,23 +25,23 @@ maze = [
     "#         #########       #",
     "#######E############D######"
 ]
-v = []
-e = []
+visited = []
+exits = []
 
-def wall(x, y):
+def is_wall_or_bad_point(x, y):
     return y < 0 or x < 0 or x >= len(maze[0]) or y >= len(maze) or maze[y][x] == "#";
 
 def crawl_maze(x, y):
-    if wall(x, y):
+    if is_wall_or_bad_point(x, y):
         return
 
-    if (x, y) in v:
+    if (x, y) in visited:
         return
     
-    v.append( (x, y) )
+    visited.append( (x, y) )
         
     if maze[y][x] != " " and maze[y][x] not in exits:
-        e.append(maze[y][x])
+        exits.append(maze[y][x])
 
     crawl_maze(x, y+1)
     crawl_maze(x, y-1)
@@ -63,9 +63,12 @@ def print_maze():
 x, y = map(int, input("Введите координаты x, y через пробел: ").split())
 crawl_maze(x, y)
 
-if wall(x, y):
+if is_wall_or_bad_point(x, y):
     print("Неверные координаты")
 else:
-    for exit in e:
-        print(exit, end=' ')
-    print()
+    if (len(exits) == 0):
+        print("Выходов нет")
+    else:
+        for exit in exits:
+            print(exit, end=' ')
+        print()

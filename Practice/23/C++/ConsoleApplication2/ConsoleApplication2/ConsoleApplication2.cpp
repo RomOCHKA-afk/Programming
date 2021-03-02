@@ -2,7 +2,7 @@
 #include <cmath>
 #include "Talor.h"
 #include "fact.h"
-#include "comb.h"
+#include "Comb.h"
 
 const double Pi = 3.14159265359;
 using namespace std;
@@ -28,7 +28,7 @@ int main()
     cout << endl << "k \t" << "c(k, 10) \n";
     for (int i = 1; i < 11; i++)
     {
-        cout << i << "\t" << comb(i, 10) << endl;
+        cout << i << "\t" << Comb(i, 10) << endl;
     }
 
 }
